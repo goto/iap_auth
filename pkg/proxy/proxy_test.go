@@ -1,14 +1,14 @@
 package proxy_test
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"sync/atomic"
 	"testing"
 
-	"github.com/gojekfarm/iap_auth/pkg/logger"
-	"github.com/gojekfarm/iap_auth/pkg/proxy"
+	"github.com/goto/iap_auth/pkg/logger"
+	"github.com/goto/iap_auth/pkg/proxy"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -35,6 +35,6 @@ func TestShouldReverseProxyToGivenUrlWithAuthorizationHeaders(t *testing.T) {
 
 	res, err := frontendClient.Do(getReq)
 	assert.Nil(t, err)
-	bodyBytes, _ := ioutil.ReadAll(res.Body)
+	bodyBytes, _ := io.ReadAll(res.Body)
 	assert.Equal(t, []byte("Bearer blahblah"), bodyBytes)
 }

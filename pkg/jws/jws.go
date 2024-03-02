@@ -4,7 +4,7 @@ import (
 	"crypto/rsa"
 	"time"
 
-	googlejws "golang.org/x/oauth2/jws"
+	"github.com/goto/iap_auth/pkg/googlejws"
 )
 
 type JWS struct {

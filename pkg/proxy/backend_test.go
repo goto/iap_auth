@@ -1,7 +1,7 @@
 package proxy
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/http/httptest"
 	"net/url"
@@ -31,6 +31,6 @@ func TestShouldReverseProxyToGivenUrl(t *testing.T) {
 
 	res, err := frontendClient.Do(getReq)
 	assert.Nil(t, err)
-	bodyBytes, _ := ioutil.ReadAll(res.Body)
+	bodyBytes, _ := io.ReadAll(res.Body)
 	assert.Equal(t, expectedresponse, bodyBytes)
 }

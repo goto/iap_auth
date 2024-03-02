@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/gojekfarm/iap_auth/pkg/pkey"
+	"github.com/goto/iap_auth/pkg/pkey"
 	"github.com/stretchr/testify/assert"
 )
 

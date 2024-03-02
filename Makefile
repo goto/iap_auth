@@ -25,14 +25,11 @@ fmt:
 vet:
 	go vet ./...
 
-lint:
-	@if [[ `golint $(All_PACKAGES) | { grep -vwE "exported (var|function|method|type|const) \S+ should have comment" || true; } | wc -l | tr -d ' '` -ne 0 ]]; then \
-		golint $(ALL_PACKAGES) | { grep -vwE "exported (var|function|method|type|const) \S+ should have comment" || true; }; \
-		exit 2; \
-	fi;
+lint: ## lint checker
+	golangci-lint run
 
 test: copy-config
-	go test ./...
+	go test -race $(shell go list ./... | grep -v /test/) -covermode=atomic -coverprofile=coverage.out
 
 test-cover-html:
 	@echo "mode: count" > coverage-all.out
