@@ -1,13 +1,13 @@
 package iap
 
 import (
-	"io/ioutil"
 	"net/http"
+	"os"
 
 	"github.com/asaskevich/govalidator"
-	"github.com/gojekfarm/iap_auth/pkg/jws"
-	"github.com/gojekfarm/iap_auth/pkg/pkey"
-	"github.com/gojekfarm/iap_auth/pkg/token"
+	"github.com/goto/iap_auth/pkg/jws"
+	"github.com/goto/iap_auth/pkg/pkey"
+	"github.com/goto/iap_auth/pkg/token"
 	"golang.org/x/oauth2/google"
 )
 
@@ -25,10 +25,10 @@ func New(hc *http.Client, sa, id string) (*IAP, error) {
 		ClientID:       id,
 	}
 	result, err := govalidator.ValidateStruct(newiap)
-	if result == false || err != nil {
+	if !result || err != nil {
 		return &IAP{}, err
 	}
-	serviceaccount, err := ioutil.ReadFile(newiap.ServiceAccount)
+	serviceaccount, err := os.ReadFile(newiap.ServiceAccount)
 	if err != nil {
 		return nil, err
 	}

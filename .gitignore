@@ -2,3 +2,5 @@ out/
 *.swp
 .idea/*
 iap.conf.toml
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out

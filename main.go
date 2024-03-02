@@ -8,15 +8,15 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/gojekfarm/iap_auth/config"
-	"github.com/gojekfarm/iap_auth/pkg/iap"
-	"github.com/gojekfarm/iap_auth/pkg/logger"
-	"github.com/gojekfarm/iap_auth/pkg/proxy"
+	"github.com/goto/iap_auth/config"
+	"github.com/goto/iap_auth/pkg/iap"
+	"github.com/goto/iap_auth/pkg/logger"
+	"github.com/goto/iap_auth/pkg/proxy"
 	"golang.org/x/oauth2"
 )
 
 func main() {
-	cfg, err := config.Load()
+	cfg, _ := config.Load()
 	logger.SetupLogger(cfg.LoggerLevel)
 	logger.Debugf("refresh time is %s", cfg.RefreshTimeSeconds)
 	tickPeriod, err := time.ParseDuration(cfg.RefreshTimeSeconds)

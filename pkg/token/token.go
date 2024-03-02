@@ -2,7 +2,7 @@ package token
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"net/url"
 )
@@ -28,7 +28,7 @@ func (t *TokenClient) Refresh(jwsassertion string) (string, error) {
 	}
 	defer resp.Body.Close()
 
-	body, err := ioutil.ReadAll(resp.Body)
+	body, _ := io.ReadAll(resp.Body)
 
 	var tokenRes struct {
 		AccessToken string `json:"access_token"`
